@@ -1,7 +1,53 @@
-<html>
+<%- include('./partials/header.ejs') %>
 
-<body>
-    <h1>Vanarts Node Crud App </h1>
-</body>
+    <h1>main file </h1>
+    </body>
 
-</html>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Course</th>
+                <th scope="col">Number</th>
+                <th scope="col">Image</th>
+
+                <th scope="col">User Name </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% data.forEach((student, index)=>{ %>
+
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+                        <%= student.id%>
+                    </td>
+                    <td>
+                        <%= student.first_name%>
+                    </td>
+                    <td>
+                        <%= student.last_name%>
+                    </td>
+                    <td>
+                        <%= student.number%>
+                    </td>
+                    <td>
+                        <%= student.course%>
+                    </td>
+                    <td>
+                        <%= student.image%>
+                    </td>
+                    <td>
+                        <%= student.user_name%>
+                    </td>
+
+                    <% });%>
+
+        </tbody>
+    </table>
+
+    </html>
