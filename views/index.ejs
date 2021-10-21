@@ -1,7 +1,8 @@
 <%- include('./partials/header.ejs') %>
 
     <h1>main file </h1>
-    </body>
+
+    <a href="/add" class="btn btn-primary">Click here To Add Student</a>
 
 
     <table class="table table-striped">
@@ -15,6 +16,7 @@
                 <th scope="col">Image</th>
 
                 <th scope="col">User Name </th>
+                <th scope="col"> Actions </th>
             </tr>
         </thead>
         <tbody>
@@ -44,10 +46,13 @@
                     <td>
                         <%= student.user_name%>
                     </td>
+                    <td> <a href="">Edit </a> | <a href="">Delete</a> </td>
 
                     <% });%>
 
         </tbody>
     </table>
+    </div>
+    </body>
 
     </html>

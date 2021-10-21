@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 const { getHomePage } = require('./routes/index');
+const { addStudentPage } = require('./routes/student');
 // set the default port 
 const PORT = 3000;
 
@@ -42,6 +43,7 @@ app.set('view engine', 'ejs'); // configure template engine
 
 
 app.get('/', getHomePage);
+app.get('/add', addStudentPage);
 
 // open the port for the server
 app.listen(PORT, () => {
