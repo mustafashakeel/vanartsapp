@@ -4,8 +4,9 @@ const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
+const { getHomePage } = require('./routes/index');
 // set the default port 
-const PORT = 6000;
+const PORT = 3000;
 
 // configure to mysql database 
 const db = mysql.createConnection({
@@ -31,12 +32,16 @@ global.db = db;
 
 // configure the middleware 
 
-app.set('port', process.env.port || PORT); // set the port 
-app.set('views', __dirname + '/views');
-// set the view folder
+app.set('port', process.env.PORT || PORT); // set express to use this port
+app.set('views', __dirname + '/views'); // set express to look in this folder to render our view
+app.set('view engine', 'ejs'); // configure template engine
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json()); // parse form data client
+// app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
+// app.use(fileUpload()); // configure fileupload
 
 
-
+app.get('/', getHomePage);
 
 // open the port for the server
 app.listen(PORT, () => {
