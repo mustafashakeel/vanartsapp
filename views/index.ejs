@@ -24,24 +24,24 @@
             <% data.forEach((student, index)=>{ %>
 
                 <tr>
-                    <th scope="row">1</th>
-                    <td>
+                    <th scope="row">
                         <%= student.id%>
-                    </td>
+                    </th>
                     <td>
                         <%= student.first_name%>
                     </td>
                     <td>
                         <%= student.last_name%>
                     </td>
-                    <td>
-                        <%= student.number%>
-                    </td>
+
                     <td>
                         <%= student.course%>
                     </td>
                     <td>
-                        <%= student.image%>
+                        <%= student.number%>
+                    </td>
+                    <td>
+                        <img src="assets/images/<%= student.image%>" class="rounded-circle" />
                     </td>
                     <td>
                         <%= student.user_name%>
