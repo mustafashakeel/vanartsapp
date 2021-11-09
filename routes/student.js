@@ -49,7 +49,7 @@ module.exports = {
                 // check for the acceptable file extension and they are 
                 //  jpg , png git 
                 if (uploadedFile.mimetype === 'image/png' || uploadedFile.mimetype === 'image/jpeg' || uploadedFile.mimetype === 'image/gif') {
-                    uploadedFile.mv(`public/assets/images/${student_image_name}`, (err) => {
+                    uploadedFile.mv(`public/assets/images   /${student_image_name}`, (err) => {
                         if (err) {
                             return res.status(500).send(err);
                         }
@@ -81,5 +81,59 @@ module.exports = {
 
 
 
+    },
+    // open Edit page when we click on the edit button 
+    editStudentPage: (req, res) => {
+
+        let studentId = req.params.id;
+
+        // Create a edit page form 
+        // run sql to populate it // get the particular record using the id 
+
+        let query = "SELECT * from `students` WHERE id='" + req.params.id + "'";
+
+        db.query(query, (err, result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            console.log(" data !!!", result[0]);
+
+            res.render('edit-students.ejs', { student: result[0] });
+
+        });
+
+
+
+
+
+
+
+    },
+    editStudent: (req, res) => {
+        console.log(" update page id", req.params);
+        console.log(" update page data", req.body);
+        let studentId = req.params.id;
+        let first_name = req.body.first_name;
+        let last_name = req.body.last_name;
+        let user_name = req.body.user_name;
+        let course = req.body.course;
+        let number = req.body.roll_number;
+
+        // let query = "UPDATE `students` SET `first_name`='" + first_name + "'`, `last_name`='" + last_name + "', `course`='" + course + "', `number`='" + number + "' WHERE `id`='" + studentId + "'";
+        let query = "UPDATE `students` SET `first_name` = '" + first_name + "', `last_name` = '" + last_name + "', `user_name` = '" + user_name + "', `course` = '" + course + "', `number` = '" + number + "' WHERE `id` = '" + studentId + "'";
+
+        console.log(" query ", query);
+
+        db.query(query, (err, result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            console.log(" data !!!", result[0]);
+
+            res.redirect('/');
+
+        });
+
     }
+
 }

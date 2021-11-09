@@ -1,0 +1,61 @@
+<%- include('./partials/header.ejs') %>
+    <form action="" method="post" enctype="multipart/form-data">
+
+
+        <div>
+
+            <div class="mb-3">
+                <h2>Edit Record</h2>
+                <h2>
+
+                </h2>
+
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" class="form-control w-25" name="first_name" id="first_name"
+                    value="<%= student.first_name %>" aria-describedby="First Name">
+                <div id="first_name_help" class="form-text">Please enter your First Name.</div>
+            </div>
+            <div class="mb-3">
+                <label for="last_name" class="form-label">last Name</label>
+                <input type="text" class="form-control w-25" id="last_name" value="<%= student.last_name %>"
+                    name="last_name" aria-describedby="Last Name">
+                <div id="last_name_help" class="form-text">Please enter your Last Name.</div>
+            </div>
+            <div class="mb-3">
+                <label for="user_name" class="form-label">User Name</label>
+                <input type="text" class="form-control w-25" name="user_name" id="user_name"
+                    value="<%= student.user_name %>" aria-describedby="User Name">
+                <div id="last_name_help" class="form-text">Please enter your User Name.</div>
+            </div>
+            <div class="mb-3">
+                <label for="roll_number" class="form-label">Roll Number</label>
+                <input type="text" class="form-control w-25" value="<%= student.number %>" name="roll_number"
+                    id="roll_number" aria-describedby="Last Name">
+                <div id="roll_number_help" class="form-text">Please enter your Roll Number.</div>
+            </div>
+
+            <div class="form-group">
+                <select name="course" id="course" class="form-control w-25">
+                    <option selected">
+                        <%= student.course %>
+                    </option>
+                    <option>Web Developer</option>
+                    <option>Video Editing </option>
+                    <option>Acting </option>
+                    <option>Photography</option>
+                    <option>Animation</option>
+
+
+                </select>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Update Student</button>
+
+
+    </form>
+
+    </div>
+    </body>
+
+    </html>

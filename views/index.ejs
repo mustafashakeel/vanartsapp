@@ -46,7 +46,8 @@
                     <td>
                         <%= student.user_name%>
                     </td>
-                    <td> <a href="">Edit </a> | <a href="">Delete</a> </td>
+                    <td> <a href="/edit/<%= student.id %>">Edit </a> | <a href="/delete/<%= student.id %>">Delete</a>
+                    </td>
 
                     <% });%>
 

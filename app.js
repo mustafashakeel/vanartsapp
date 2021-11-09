@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 const { getHomePage } = require('./routes/index');
-const { addStudentPage, addStudent } = require('./routes/student');
+const { addStudentPage, addStudent, editStudentPage, editStudent } = require('./routes/student');
 // set the default port 
 const PORT = 3000;
 
@@ -45,8 +45,9 @@ app.use(fileUpload()); // configure fileupload
 
 app.get('/', getHomePage);
 app.get('/add', addStudentPage);
-app.post('/add', addStudent)
-
+app.post('/add', addStudent);
+app.get('/edit/:id', editStudentPage);
+app.post('/edit/:id', editStudent);
 // open the port for the server
 app.listen(PORT, () => {
     console.log(` The server is running on localhost:${PORT}`);
