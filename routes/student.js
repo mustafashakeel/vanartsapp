@@ -1,3 +1,4 @@
+const fs = require('fs');
 module.exports = {
     addStudentPage: (req, res) => {
         res.render('add-students.ejs');
@@ -120,6 +121,7 @@ module.exports = {
         let number = req.body.roll_number;
 
         // let query = "UPDATE `students` SET `first_name`='" + first_name + "'`, `last_name`='" + last_name + "', `course`='" + course + "', `number`='" + number + "' WHERE `id`='" + studentId + "'";
+
         let query = "UPDATE `students` SET `first_name` = '" + first_name + "', `last_name` = '" + last_name + "', `user_name` = '" + user_name + "', `course` = '" + course + "', `number` = '" + number + "' WHERE `id` = '" + studentId + "'";
 
         console.log(" query ", query);
@@ -133,6 +135,26 @@ module.exports = {
             res.redirect('/');
 
         });
+
+    },
+    deleteStudent: (req, res) => {
+        let studenId = req.params.id;
+        let studentImageQuery = 'select image from students WHERE id="' + studenId + '"';
+        let deleteStudentQuery = 'DELETE from students where id="' + studenId + '"';
+        db.query(studentImageQuery, (err, result) => {
+            let studentImage = result[0].image;
+            fs.unlink(`public/assets/images/${studentImage}`, (err, result) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                db.query(deleteStudentQuery, (err, result) => {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    res.redirect('/');
+                })
+            })
+        })
 
     }
 
